@@ -139,8 +139,8 @@ Usernames must:
 | GitHub user not found | `404` | GitHub user 'xyz' not found. |
 | No gists for valid user | `404` | No gists found for GitHub user 'xyz'. |
 | GitHub rate limit exceeded | `403` | Rate limit exceeded. Please try again later. |
-| GitHub API timeout/unreachable | `502` / `504` | Error communicating with GitHub API. |
-
+| GitHub API timeout/unreachable | `502`  | Error communicating with GitHub API. |
+| GitHub API timeout/unreachable | `504` | GitHub API timed out. |
 
 
 ## GitHub Token Auth
