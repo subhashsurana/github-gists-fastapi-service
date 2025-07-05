@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+requests
+fastapi-pagination
+pydantic
+httpx
+pytest

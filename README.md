@@ -1,43 +1,159 @@
-## :warning: Please read these instructions carefully and entirely first
-* Clone this repository to your local machine.
-* Use your IDE of choice to complete the assignment.
-* When you have completed the assignment, you need to  push your code to this repository and [mark the assignment as completed by clicking here](https://app.snapcode.review/submission_links/fde3df01-b0b5-414d-887e-28d9f6bf4d3e).
-* Once you mark it as completed, your access to this repository will be revoked. Please make sure that you have completed the assignment and pushed all code from your local machine to this repository before you click the link.
+# GitHub Gists FastAPI Service
 
-## Operability Take-Home Exercise
+This FastAPI-based microservice allows users to fetch and paginate public GitHub gists for any given GitHub username. It validates input, gracefully handles errors like rate-limiting and user-not-found, and returns a clean, paginated response.
 
-Welcome to the start of our recruitment process for Operability Engineers. It was great to speak to you regarding an opportunity to join the Equal Experts network!
+## 🚀 Features
 
-Please write code to deliver a solution to the problems outlined below.
+#### ✅ Fetch public gists for any valid GitHub username
 
-We appreciate that your time is valuable and do not expect this exercise to **take more than 90 minutes**. If you think this exercise will take longer than that, I **strongly** encourage you to please get in touch to ask any clarifying questions.
+#### 🔄 Pagination using fastapi-pagination
 
-### Submission guidelines
-**Do**
-- Provide a README file in text or markdown format that documents a concise way to set up and run the provided solution.
-- Take the time to read any applicable API or service docs, it may save you significant effort.
-- Make your solution simple and clear. We aren't looking for overly complex ways to solve the problem since in our experience, simple and clear solutions to problems are generally the most maintainable and extensible solutions.
+#### 🧪 Pytest-based test suite with mocking and validation
 
-**Don't**
+#### 🔐 Username input validation using reusable Pydantic constraints
 
-Expect the reviewer to dedicate a machine to review the test by:
+#### 🛡️ Handles errors (e.g., invalid usernames, GitHub API rate limits, non-existent users)
 
-- Installing software globally that may conflict with system software
-- Requiring changes to system-wide configurations
-- Providing overly complex solutions that need to spin up a ton of unneeded supporting dependencies. We aspire to keep our dev experiences as simple as possible (but no simpler)!
-- Include identifying information in your submission. We are endeavouring to make our review process anonymous to reduce bias.
+#### ⚙️ Dockerized (secured and minimal image)
 
-### Exercise
-If you have any questions on the below exercise, please do get in touch and we’ll answer as soon as possible.
+## Project Structure
 
-#### Build an API, test it, and package it into a container
-- Build a simple HTTP web server API in any general-purpose programming language[^1] that interacts with the GitHub API and responds to requests on `/<USER>` with a list of the user’s publicly available Gists[^2].
-- Create an automated test to validate that your web server API works. An example user to use as test data is `octocat`.
-- Package the web server API into a docker container that listens for requests on port `8080`. You do not need to publish the resulting container image in any container registry, but we are expecting the Dockerfile in the submission.
-- The solution may optionally provide other functionality (e.g. pagination, caching) but the above **must** be implemented.
+```
+fastapi-project
+├── app
+│   ├── main.py               # FastAPI app entrypoint
+│   ├── api
+│   │   └── routes.py         # API routes definition
+│   ├── models
+│   │   └── __init__.py       # Data models
+│   ├── schemas
+│   │   └── __init__.py       # Pydantic schemas for data validation
+|   |   └── common.py         # Shared validators (e.g., GitHubUsername)
+│   └── dependencies
+│       └── __init__.py       # Reusable dependencies
+├── tests
+│   └── test_main.py          # Unit tests with pytest + monkeypatch
+├── requirements.txt           # Project dependencies
+├── README.md                  # Project documentation
+└── .gitignore                 # Files to ignore in version control
+```
 
-Best of luck,  
-Equal Experts
-__________________________________________
-[^1]: For example Go, Python or Ruby but not Bash or Powershell.  
-[^2]: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28
+## Setup & Installation Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-user/github-gists-fastapi-service.git
+   cd github-gists-fastapi-service
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+
+3. Activate the virtual environment:
+- On Windows:
+  ```
+  venv\Scripts\activate
+  ```
+- On macOS/Linux:
+  ```bash
+  source venv/bin/activate
+  ```
+
+4. Install the required dependencies:
+   ```bash 
+   pip install -r requirements.txt
+   ```
+
+## Running the Application
+
+To run this FastAPI application, execute below command:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+Visit `http://127.0.0.1:8080` in your browser to access the application. The interactive API documentation can be found at `http://127.0.0.1:8080/docs` (Interactive Swagger UI).
+
+## Testing
+
+To run the tests, use the following command:
+```bash
+python -m pytest -v
+```
+You can also generate coverage reports or integrate with GitHub Actions CI/CD.
+
+## License
+
+This project is licensed under the MIT License.
+
+## API Usage
+
+Endpoint
+
+`GET /{username}`
+
+📅 Path Parameters:
+
+`username: GitHub username` (must match GitHub's naming rules)
+
+Example:
+
+`GET /octocat`
+
+Response (Paginated):
+```yaml
+{
+  "items": [
+    {
+      "id": "6cad326836d38bd3a7ae",
+      "html_url": "https://gist.github.com/octocat/6cad326836d38bd3a7ae",
+      "description": "Hello world!"
+    }
+  ],
+  "total": 12,
+  "page": 1,
+  "size": 50,
+  "pages": 1
+```
+## Input Validation
+
+Usernames must:
+
+- Be 1 to 39 characters long
+
+- Use only letters, numbers, and hyphens
+
+- Not start or end with a hyphen
+
+- Not have consecutive hyphens
+
+- Regex enforced via reusable Pydantic constraint in schemas/common.py:
+
+`pattern=r"^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$"`
+
+## Error Handling
+
+| Scenario | Status Code | Message |
+| :--- | :---: | :--- |
+| Invalid username format | `422` | Invalid input. Please check the username or query parameters. |
+| GitHub user not found | `404` | GitHub user 'xyz' not found. |
+| No gists for valid user | `404` | No gists found for GitHub user 'xyz'. |
+| GitHub rate limit exceeded | `403` | Rate limit exceeded. Please try again later. |
+| GitHub API timeout/unreachable | `502`  | Error communicating with GitHub API. |
+| GitHub API timeout/unreachable | `504` | GitHub API timed out. |
+
+
+## GitHub Token Auth
+To prevent hitting GitHub rate limits for unauthenticated API requests, you can inject a GitHub token via environment variable 
+```bash
+export GITHUB_TOKEN=your_personal_access_token
+```
+
+## Docker (Optional)
+
+Build & run:
+
+```bash
+docker build -t github-gists-api-svc:v1 .
+docker run -p 8080:8080 --name github-gists-api-svc github-gists-api-svc:v1
+```
