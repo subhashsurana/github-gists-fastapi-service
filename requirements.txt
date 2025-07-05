@@ -1,13 +1,7 @@
-# FastAPI
-# uvicorn
-# pydantic
-# sqlalchemy
-# httpx
-# pytest
-# pytest-asyncio
-
 fastapi
 uvicorn[standard]
 requests
 fastapi-pagination
 pydantic
+httpx
+pytest

@@ -5,6 +5,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 import logging
 from fastapi import Request
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger("uvicorn.error")
 

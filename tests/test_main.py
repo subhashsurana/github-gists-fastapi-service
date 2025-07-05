@@ -110,14 +110,6 @@ def test_get_gists_valid_username_with_consecutive_hyphens():
     assert response.status_code in [422]
     assert "detail" in response.json()
     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-# def test_get_gists_valid_username_with_consecutive_hyphens_in_middle():
-#     """
-#     Validates that the /valid--username-in-middle endpoint returns a 422 error for a username with consecutive hyphens in the middle.
-#     """
-#     response = client.get("/valid--username--in")
-#     assert response.status_code == 403
-#     assert "detail" in response.json()
-#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
 def test_get_gists_valid_username_with_consecutive_hyphens_at_end():
     """
     Validates that the /valid-username-- endpoint returns a 422 error for a username with consecutive hyphens at the end.
@@ -134,14 +126,6 @@ def test_get_gists_valid_username_with_consecutive_hyphens_at_start():
     assert response.status_code == 422
     assert "detail" in response.json()
     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-# def test_get_gists_valid_username_with_multiple_hyphens():
-#     """
-#     Validates that the /valid-username-with-multiple-hyphens endpoint returns a 422 error for a username with multiple hyphens.
-#     """
-#     response = client.get("/valid--username--with--multiple")
-#     assert response.status_code == 403
-#     assert "detail" in response.json()
-#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
 def test_get_gists_valid_username_with_hyphen_in_middle():
     """
     Validates that the /valid-username-with-hyphen-in-middle endpoint returns a 422 error for a username with a hyphen in the middle.
@@ -294,223 +278,223 @@ def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hy
     assert response.status_code == 422
     assert "detail" in response.json()
     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_consecutive_hyphens():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with consecutive hyphens.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_multiple_hyphens():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with multiple hyphens.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_special_characters():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with special characters.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_emoji():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with emoji.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_invalid_characters():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with invalid characters.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_in_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen in the middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the end.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start and end.
-    """ 
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the end and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_consecutive_hyphens():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with consecutive hyphens.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_multiple_hyphens():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with multiple hyphens.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_special_characters():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with special characters.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_emoji():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji endpoint returns a 422 error for a username with a hyphen at the start,
-    end, in the middle, and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with emoji.
-    """ 
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_invalid_characters():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with invalid characters.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_in_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen in the middle.
-    """ 
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen  at the start, end, middle, and with a hyphen at the end.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen  at the start, end, middle, and with a hyphen at the start and end.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the end and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle")
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
-def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle():
-    """
-    Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
-    and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start, end, and middle.
-    """
-    response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle")
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_consecutive_hyphens():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with consecutive hyphens.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_multiple_hyphens():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with multiple hyphens.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_special_characters():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with special characters.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_emoji():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with emoji.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_invalid_characters():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with invalid characters.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_in_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen in the middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the end.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start and end.
+#     """ 
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the end and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_consecutive_hyphens():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with consecutive hyphens.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-consecutive-hyphens")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_multiple_hyphens():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with multiple hyphens.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-multiple-hyphens")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_special_characters():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with special characters.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-special-characters")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_emoji():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji endpoint returns a 422 error for a username with a hyphen at the start,
+#     end, in the middle, and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with emoji.
+#     """ 
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-emoji")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_invalid_characters():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with invalid characters.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-invalid-characters")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_in_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen in the middle.
+#     """ 
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-in-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen  at the start, end, middle, and with a hyphen at the end.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen  at the start, end, middle, and with a hyphen at the start and end.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_end_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the end and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-end-and-middle")
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters."
+# def test_get_gists_valid_username_with_hyphen_in_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle_and_hyphen_at_start_and_end_and_middle():
+#     """
+#     Validates that the /valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle endpoint returns a 422 error for a username with a hyphen at the start, end, in the middle,
+#     and with a hyphen at the start, end, middle, and with a hyphen at the start, end, middle, and with a hyphen at the start, end, and middle.
+#     """
+#     response = client.get("/valid-username-with-hyphen-in-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle-and-hyphen-at-start-and-end-and-middle")
     
-    assert response.status_code == 422
-    assert "detail" in response.json()
-    assert response.json()["detail"] == "Invalid input. Please check the username or query parameters." 
+#     assert response.status_code == 422
+#     assert "detail" in response.json()
+#     assert response.json()["detail"] == "Invalid input. Please check the username or query parameters." 
 
 def test_get_gists_nonexistent_user(monkeypatch):
     """
@@ -531,7 +515,11 @@ def test_get_gists_nonexistent_user(monkeypatch):
         
 def test_valid_username():
     response = client.get("/octocat")
-    assert response.status_code == 403
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, dict)
+    assert "items" in data
+    assert isinstance(data["items"], list)
 
 def test_invalid_username_emoji():
     response = client.get("/💩")

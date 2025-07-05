@@ -1,0 +1,53 @@
+# .gitignore for FastAPI GitHub Gists Project
+
+# Ignore Python cache and pyc files & directories
+__pycache__/
+**/__pycache__/
+*.py[cod]
+**/*.pyc
+
+
+
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+
+# Logs
+*.log
+
+# Build/
+dist/
+build/
+.eggs/
+*.egg-info/
+
+# Docker
+*.env
+.env.*
+
+# Ignore local configs
+*.local
+*.bak
+
+# FastAPI auto-generated docs cache
+openapi.json

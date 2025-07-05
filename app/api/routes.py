@@ -4,6 +4,7 @@ import requests
 from fastapi_pagination import Page, paginate
 from pydantic import BaseModel
 import logging
+import os
 
 router = APIRouter()
 
@@ -29,8 +30,11 @@ async def get_gists(
     Username must match GitHub's allowed characters.
     """
     url = f"https://api.github.com/users/{username}/gists"
+    headers = {}
+    github_token = os.getenv("GITHUB_TOKEN")
+    headers = {"Authorization": f"token {github_token}"} if github_token else {}
     try:
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, headers=headers, timeout=5)
         logger.info(f"printing the url response: {response}")
         if response.status_code == 404:
             logger.warning(f"GitHub user '{username}' not found.")
