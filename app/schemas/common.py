@@ -9,5 +9,6 @@ from pydantic import constr
 GitHubUsername = constr(
     min_length=1,
     max_length=39,
-    pattern=r"^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$"
+    pattern=r"^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
+               
 )

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Response
 from app.schemas.common import GitHubUsername
 import requests
 from fastapi_pagination import Page, paginate
@@ -15,13 +15,18 @@ class GistSummary(BaseModel):
     html_url: str
     description: str | None
 
+# Add this endpoint BEFORE your /users/{username} endpoint
+@router.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)
+
 @router.get("/{username}", response_model=Page[GistSummary])
 async def get_gists(
     username: str = Path(
     ..., 
     min_length=1,
     max_length=39,
-    pattern="^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$",
+    pattern=r"^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$",
     description="""GitHub username (1-39 characters, alphanumeric and hyphen, cannot start/end with hyphen)
     disallowing '-octocat', 'octocat-,octo--cat', '--octocat', 'octocat--cat','octocat-octo-cat', 'octocat-octo-cat-'""" )
     ):
