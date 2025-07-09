@@ -129,7 +129,7 @@ Usernames must:
 
 - Regex enforced via reusable Pydantic constraint in schemas/common.py:
 
-`pattern=r"^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$"`
+`pattern=r"^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"`
 
 ## Error Handling
 
