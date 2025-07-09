@@ -6,7 +6,7 @@ on:
     - 'feature/**'
 
 env:
-  IMAGE_NAME: github-gists-api-svc:v1
+  IMAGE_NAME: 'github-gists-api-svc'
 
 jobs:
   build-app: 
@@ -49,17 +49,20 @@ jobs:
       uses: docker/metadata-action@v5
       with:
         images: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
+        tags: type=ref,event=branch,enable=true,prefix=,suffix=,format=short
+
+    - name: Sanitize branch name
+      id: sanitize-branch
+      run: |
+        BRANCH_NAME=$(echo "${{ github.ref_name }}" | sed 's/[^a-zA-Z0-9.-]/-/g' | tr '[:upper:]' '[:lower:]')
+        echo "clean_branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
 
     - name: Build & push to Docker Hub
       uses: docker/build-push-action@v6
       with: 
         context: .
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: ${{ env.IMAGE_NAME }}:${{ steps.sanitize-branch.outputs.clean_branch }}
         labels: ${{ steps.meta.outputs.labels }}
 
 
