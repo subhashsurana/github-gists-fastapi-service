@@ -33,17 +33,24 @@ jobs:
         with: 
           username: {{ secrets.DOCKER_USERNAME }}
           password:  {{ secrets.DOCKERHUB_TOKEN }}
+  build-image-publish:
+    steps:
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with: 
+        username: {{ secrets.DOCKER_USERNAME }}
+        password:  {{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Setup Docker buildx
-        uses:  docker/setup-buildx-action@v3
+    - name: Setup Docker buildx
+      uses:  docker/setup-buildx-action@v3
 
-      - name: Build & push to Docker Hub
-        uses: docker/build-push-action@v6
-        with: 
-          context: .
-          push: true
-          tags: {{ steps.meta.output.tags }}
-          labels: {{ steps.meta.output.labels }}
+    - name: Build & push to Docker Hub
+      uses: docker/build-push-action@v6
+      with: 
+        context: .
+        push: true
+        tags: {{ steps.meta.output.tags }}
+        labels: {{ steps.meta.output.labels }}
 
 
 
