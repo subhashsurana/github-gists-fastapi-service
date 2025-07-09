@@ -2,7 +2,7 @@ name: Actions CI/CD Pipeline trigger based on push changes to feature branches
 
 on:
   push:
-    branch: 
+    branches: 
     - feature/**
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         pip install pytest
         python -m pytest -v
 
-    build-image-publish:
+  build-image-publish:
       steps:
       - name: Log in to the Container registry
         uses: docker/login-action@v3
